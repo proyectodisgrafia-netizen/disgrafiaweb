@@ -1,0 +1,334 @@
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
+
+:root {
+  --color-primario: #0d6efd;
+  --color-secundario: #198754;
+  --color-fondo: #f4f6f9;
+  --color-fondo-suave: #eef4ff;
+  --color-texto: #212529;
+  --color-oscuro: #212529;
+  --color-blanco: #ffffff;
+  --radio: 18px;
+  --sombra: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+}
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: #000;
+  color: #fff;
+  padding: 8px 12px;
+  z-index: 1000;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 10px;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+  box-shadow: var(--sombra);
+}
+
+/* =====================================================
+   ESTRUCTURA GENERAL
+===================================================== */
+
+.main-index,
+.guia-main {
+  margin-top: 90px;
+  margin-bottom: 80px;
+}
+
+/* =====================================================
+   HERO (INDEX Y GUÍAS)
+===================================================== */
+
+.hero-index,
+.guia-hero {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: var(--color-blanco);
+  padding: 80px 30px;
+  border-radius: var(--radio);
+  margin-bottom: 80px;
+  box-shadow: var(--sombra);
+}
+
+.hero-index h1,
+.guia-hero h1 {
+  font-weight: 800;
+}
+
+.badge-guia {
+  display: inline-block;
+  background: #ffc107;
+  color: #000;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+/* =====================================================
+   SECCIONES
+===================================================== */
+
+.seccion-index,
+.guia-seccion {
+  background: var(--color-blanco);
+  padding: 40px;
+  border-radius: var(--radio);
+  margin-bottom: 60px;
+  box-shadow: var(--sombra);
+}
+
+.seccion-index.fondo,
+.guia-fondo {
+  background: var(--color-fondo-suave);
+}
+
+/* =====================================================
+   TARJETAS (INDEX / DOCENTES / FAMILIAS)
+===================================================== */
+
+.card-index,
+.guia-card {
+  background: var(--color-blanco);
+  padding: 30px;
+  border-radius: var(--radio);
+  text-align: center;
+  box-shadow: var(--sombra);
+  height: 100%;
+}
+
+.card-index i,
+.guia-card i {
+  font-size: 2.5rem;
+  color: var(--color-primario);
+  margin-bottom: 15px;
+}
+
+/* =====================================================
+   LISTAS DIDÁCTICAS
+===================================================== */
+
+.lista-guia,
+.lista-enfoque {
+  list-style: none;
+  padding-left: 0;
+}
+
+.lista-guia li,
+.lista-enfoque li {
+  margin-bottom: 10px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.lista-guia li::before,
+.lista-enfoque li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--color-secundario);
+  font-weight: bold;
+}
+
+/* =====================================================
+   PASOS (DOCENTES)
+===================================================== */
+
+.paso {
+  background: var(--color-blanco);
+  border-left: 8px solid var(--color-secundario);
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+/* =====================================================
+   DRAG & DROP (DOCENTES / ESTUDIANTES)
+===================================================== */
+
+.draggable {
+  background: var(--color-blanco);
+  border: 2px dashed var(--color-primario);
+  border-radius: 14px;
+  padding: 15px;
+  text-align: center;
+  cursor: grab;
+  font-weight: 600;
+}
+
+.zona-drop {
+  border: 3px dashed var(--color-secundario);
+  border-radius: 16px;
+  padding: 30px;
+  min-height: 140px;
+  background: #f8fff9;
+}
+
+.item-guia {
+  background: #e9f7ef;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* =====================================================
+   DESAFÍOS Y RETOS (ESTUDIANTES / FAMILIAS)
+===================================================== */
+
+.desafio {
+  background: var(--color-blanco);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  font-weight: 600;
+  border: 2px solid var(--color-primario);
+  transition: all 0.3s ease;
+}
+
+.desafio:hover {
+  background: var(--color-fondo-suave);
+  transform: translateY(-4px);
+}
+
+/* =====================================================
+   FORMULARIOS
+===================================================== */
+
+.form-label {
+  font-weight: 600;
+}
+
+textarea,
+input,
+select {
+  border-radius: 10px !important;
+}
+
+/* =====================================================
+   TABLAS (GUÍA GENERADA)
+===================================================== */
+
+table {
+  background: var(--color-blanco);
+}
+
+table th {
+  background: #e9f1ff;
+  width: 25%;
+  vertical-align: middle;
+}
+
+/* =====================================================
+   BOTONES
+===================================================== */
+
+button,
+.btn {
+  border-radius: 30px !important;
+  padding: 10px 24px;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+  background: var(--color-oscuro);
+  color: var(--color-blanco);
+  padding: 30px;
+  text-align: center;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 768px) {
+  .hero-index,
+  .guia-hero {
+    padding: 50px 20px;
+  }
+
+  .seccion-index,
+  .guia-seccion {
+    padding: 25px;
+  }
+}
+
+.tecnica-card {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.tecnica-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+#btnMostrarMas i {
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+.recurso-card {
+  background: #8b0036;
+  color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  min-height: 170px;
+}
+
+.recurso-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.25);
+}
+
+.recurso-card i {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.recurso-card span {
+  display: block;
+  margin-top: 10px;
+  font-size: .9rem;
+  opacity: .85;
+}
