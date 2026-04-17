@@ -1,0 +1,84 @@
+.estudiantes-lista {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.evaluaciones-lista {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.nav-tabs .nav-link {
+  color: #6c757d;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-weight: 500;
+}
+
+.nav-tabs .nav-link:hover {
+  border-bottom-color: #0d6efd;
+  color: #0d6efd;
+}
+
+.nav-tabs .nav-link.active {
+  color: #0d6efd;
+  border-bottom-color: #0d6efd;
+  background: transparent;
+}
+
+.card {
+  transition: all 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.badge {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-pane {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Scrollbar personalizado */
+.estudiantes-lista::-webkit-scrollbar,
+.evaluaciones-lista::-webkit-scrollbar {
+  width: 8px;
+}
+
+.estudiantes-lista::-webkit-scrollbar-track,
+.evaluaciones-lista::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.estudiantes-lista::-webkit-scrollbar-thumb,
+.evaluaciones-lista::-webkit-scrollbar-thumb {
+  background: #0d6efd;
+  border-radius: 4px;
+}
+
+.estudiantes-lista::-webkit-scrollbar-thumb:hover,
+.evaluaciones-lista::-webkit-scrollbar-thumb:hover {
+  background: #0b5ed7;
+}

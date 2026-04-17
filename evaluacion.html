@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Evaluación | Disgrafía</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/estilos.css" rel="stylesheet">
+  <link href="css/evaluacion.css" rel="stylesheet">
+</head>
+
+<body>
+
+<a href="#contenido" class="skip-link">Saltar al contenido principal</a>
+
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Disgrafía <span class="badge bg-info text-dark">Evaluación</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html"><i class="bi bi-arrow-left"></i> Volver</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="constructor.html" class="btn btn-warning btn-sm ms-2">Constructor</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main id="contenido" class="container-fluid mt-5 mb-5">
+
+  <div class="container mt-4">
+    <h1 class="mb-2"><i class="bi bi-bar-chart"></i> Sistema Integral de Evaluación</h1>
+    <p class="lead text-muted mb-4">Gestión de estudiantes, registro de evaluaciones y seguimiento de progreso</p>
+
+    <!-- TABS DE NAVEGACIÓN -->
+    <ul class="nav nav-tabs nav-fill mb-4" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="estudiantes-tab" data-bs-toggle="tab" data-bs-target="#estudiantes" type="button">
+          <i class="bi bi-people"></i> Mis Estudiantes
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="evaluaciones-tab" data-bs-toggle="tab" data-bs-target="#evaluaciones" type="button">
+          <i class="bi bi-clipboard-check"></i> Registro de Evaluaciones
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="reportes-tab" data-bs-toggle="tab" data-bs-target="#reportes" type="button">
+          <i class="bi bi-graph-up"></i> Reportes y Gráficos
+        </button>
+      </li>
+    </ul>
+
+    <!-- CONTENIDO DE TABS -->
+    <div class="tab-content">
+
+      <!-- TAB 1: ESTUDIANTES -->
+      <div class="tab-pane fade show active" id="estudiantes" role="tabpanel">
+        
+        <div class="row g-4">
+          <!-- Agregar Estudiante -->
+          <div class="col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-header bg-success text-white">
+                <h5 class="mb-0"><i class="bi bi-person-plus"></i> Agregar Nuevo Estudiante</h5>
+              </div>
+              <div class="card-body">
+                
+                <div class="mb-3">
+                  <label for="nombreEstudiante" class="form-label"><strong>Nombre Completo</strong></label>
+                  <input type="text" id="nombreEstudiante" class="form-control" placeholder="Ej: Juan Pérez">
+                </div>
+
+                <div class="mb-3">
+                  <label for="apellidoEstudiante" class="form-label"><strong>Apellido</strong></label>
+                  <input type="text" id="apellidoEstudiante" class="form-control" placeholder="Apellido">
+                </div>
+
+                <div class="mb-3">
+                  <label for="cedulaEstudiante" class="form-label"><strong>Cédula/ID</strong></label>
+                  <input type="text" id="cedulaEstudiante" class="form-control" placeholder="Número único">
+                </div>
+
+                <div class="mb-3">
+                  <label for="nivelEstudiante" class="form-label"><strong>Nivel Educativo</strong></label>
+                  <select id="nivelEstudiante" class="form-select">
+                    <option>Educación Inicial</option>
+                    <option>Básica Elemental</option>
+                    <option>Básica Media</option>
+                    <option>Básica Superior</option>
+                    <option>Bachillerato</option>
+                    <option>Educación Especial</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="tipoDisgrafiaEstudiante" class="form-label"><strong>Tipo de Disgrafía</strong></label>
+                  <select id="tipoDisgrafiaEstudiante" class="form-select">
+                    <option>Motriz</option>
+                    <option>Visuoespacial</option>
+                    <option>Lingüística</option>
+                    <option>Mixta</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="notasIniciales" class="form-label"><strong>Notas Iniciales</strong></label>
+                  <textarea id="notasIniciales" class="form-control" rows="3" placeholder="Observaciones iniciales sobre el estudiante..."></textarea>
+                </div>
+
+                <button class="btn btn-success w-100" onclick="agregarEstudiante()">
+                  <i class="bi bi-person-plus"></i> Agregar Estudiante
+                </button>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Lista de Estudiantes -->
+          <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+              <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="bi bi-list-ul"></i> Estudiantes Registrados</h5>
+              </div>
+              <div class="card-body">
+                
+                <div class="mb-3">
+                  <input type="text" id="filtroEstudiantes" class="form-control" placeholder="Filtrar por nombre..." onkeyup="filtrarEstudiantes()">
+                </div>
+
+                <div id="listaEstudiantes" class="estudiantes-lista">
+                  <p class="text-muted text-center">No hay estudiantes registrados</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 2: EVALUACIONES -->
+      <div class="tab-pane fade" id="evaluaciones" role="tabpanel">
+        
+        <div class="row g-4">
+          <!-- Formulario de Evaluación -->
+          <div class="col-lg-5">
+            <div class="card border-0 shadow-sm">
+              <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-clipboard-check"></i> Registrar Evaluación</h5>
+              </div>
+              <div class="card-body">
+                
+                <div class="mb-3">
+                  <label for="estudianteEval" class="form-label"><strong>Seleccionar Estudiante</strong></label>
+                  <select id="estudianteEval" class="form-select" onchange="cargarDatosEstudiante()">
+                    <option value="">-- Elige un estudiante --</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="actividadEval" class="form-label"><strong>Actividad Evaluada</strong></label>
+                  <input type="text" id="actividadEval" class="form-control" placeholder="Nombre de la actividad">
+                </div>
+
+                <div class="mb-3">
+                  <label for="fechaEval" class="form-label"><strong>Fecha de Evaluación</strong></label>
+                  <input type="date" id="fechaEval" class="form-control">
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="calificacionEval" class="form-label"><strong>Calificación (0-10)</strong></label>
+                      <input type="number" id="calificacionEval" class="form-control" min="0" max="10" step="0.5">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="porcentajeEval" class="form-label"><strong>Porcentaje (%)</strong></label>
+                      <input type="number" id="porcentajeEval" class="form-control" min="0" max="100" step="5">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="competenciaEval" class="form-label"><strong>Competencia Evaluada</strong></label>
+                  <select id="competenciaEval" class="form-select">
+                    <option>Motricidad Fina</option>
+                    <option>Legibilidad</option>
+                    <option>Organización Espacial</option>
+                    <option>Expresión Escrita</option>
+                    <option>Ortografía</option>
+                    <option>Automatización</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="fortalezasEval" class="form-label"><strong>Fortalezas Observadas</strong></label>
+                  <textarea id="fortalezasEval" class="form-control" rows="2" placeholder="¿Qué hizo bien?"></textarea>
+                </div>
+
+                <div class="mb-3">
+                  <label for="mejoriasEval" class="form-label"><strong>Áreas de Mejora</strong></label>
+                  <textarea id="mejoriasEval" class="form-control" rows="2" placeholder="¿Qué necesita mejorar?"></textarea>
+                </div>
+
+                <div class="mb-3">
+                  <label for="observacionesEval" class="form-label"><strong>Observaciones Generales</strong></label>
+                  <textarea id="observacionesEval" class="form-control" rows="2" placeholder="Notas adicionales..."></textarea>
+                </div>
+
+                <button class="btn btn-primary w-100" onclick="guardarEvaluacion()">
+                  <i class="bi bi-save"></i> Guardar Evaluación
+                </button>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Historial de Evaluaciones -->
+          <div class="col-lg-7">
+            <div class="card border-0 shadow-sm">
+              <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="bi bi-clock-history"></i> Historial de Evaluaciones</h5>
+                <button class="btn btn-sm btn-outline-light" onclick="limpiarTodasLasEvaluaciones()" title="Eliminar todas las evaluaciones">
+                  <i class="bi bi-trash"></i> Limpiar todo
+                </button>
+              </div>
+              <div class="card-body">
+                
+                <div class="mb-3">
+                  <input type="text" id="filtroEvaluaciones" class="form-control" placeholder="Filtrar por estudiante..." onkeyup="filtrarEvaluaciones()">
+                </div>
+
+                <div id="historialEvaluaciones" class="evaluaciones-lista">
+                  <p class="text-muted text-center">No hay evaluaciones registradas</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+ <!-- TAB 3: REPORTES -->
+<div class="tab-pane fade" id="reportes" role="tabpanel">
+  
+  <div class="row g-4">
+
+    <!-- Selector de Estudiante para Reportes -->
+    <div class="col-12 mb-3">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <div class="row align-items-end">
+            <div class="col-md-6">
+              <label for="estudianteReporte" class="form-label"><strong>Seleccionar Estudiante para Ver Reporte</strong></label>
+              <select id="estudianteReporte" class="form-select" onchange="generarReporteEstudiante()">
+                <option value="">-- Todos los estudiantes --</option>
+              </select>
+            </div>
+            <div class="col-md-6 text-end">
+              <div class="btn-group" role="group">
+                <button class="btn btn-success" onclick="descargarReportePDF()" title="Descargar reporte en PDF">
+                  <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
+                </button>
+                <button class="btn btn-primary" onclick="imprimirReporte()" title="Imprimir reporte">
+                  <i class="bi bi-printer"></i> Imprimir
+                </button>
+                <button class="btn btn-danger" onclick="eliminarReportes()" title="Eliminar reportes guardados">
+                  <i class="bi bi-trash"></i> Eliminar Reportes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estadísticas Generales -->
+    <div class="col-md-3">
+      <div class="card text-center border-0 shadow-sm">
+        <div class="card-body">
+          <h3 id="totalEstudiantes" class="text-primary">0</h3>
+          <p class="text-muted mb-0">Total Estudiantes</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-center border-0 shadow-sm">
+        <div class="card-body">
+          <h3 id="totalEvaluaciones" class="text-success">0</h3>
+          <p class="text-muted mb-0">Total Evaluaciones</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-center border-0 shadow-sm">
+        <div class="card-body">
+          <h3 id="promedioGeneral" class="text-info">0.0</h3>
+          <p class="text-muted mb-0">Promedio General</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-center border-0 shadow-sm">
+        <div class="card-body">
+          <h3 id="tasaEvaluados" class="text-warning">0%</h3>
+          <p class="text-muted mb-0">Estudiantes Evaluados</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de Reportes Guardados -->
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-warning text-dark">
+          <h5 class="mb-0"><i class="bi bi-archive"></i> Reportes Guardados (<span id="contadorReportes">0</span>)</h5>
+        </div>
+        <div class="card-body">
+          <div id="listaReportesGuardados">
+            <p class="text-muted text-center">No hay reportes guardados</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reporte Detallado por Estudiante -->
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+          <h5 class="mb-0"><i class="bi bi-file-earmark-bar-graph"></i> Reporte Detallado</h5>
+          <button class="btn btn-sm btn-light" onclick="exportarReporteLocal()" title="Guardar reporte actual">
+            <i class="bi bi-cloud-download"></i> Guardar Reporte
+          </button>
+        </div>
+        <div class="card-body">
+          <div id="reporteDetallado">
+            <p class="text-muted text-center">Selecciona un estudiante para ver su reporte detallado</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráfico de Competencias -->
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-secondary text-white">
+          <h5 class="mb-0"><i class="bi bi-graph-up"></i> Desempeño por Competencia</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="graficoCompetencias"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</main>
+
+<footer class="footer text-center mt-5">
+  <div class="container py-4 border-top">
+    <p class="mb-2"><strong>© 2026 – Guía Didáctica Digital para la Atención de Disgrafía</strong></p>
+  </div>
+</footer>
+
+<!-- jsPDF y html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<!-- Chart.js para gráficos -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/evaluacion.js"></script>
+
+</body>
+</html>

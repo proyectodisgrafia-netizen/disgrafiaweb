@@ -1,334 +1,163 @@
-/* =====================================================
-   CONFIGURACIÓN GENERAL
-===================================================== */
-
 :root {
-  --color-primario: #0d6efd;
-  --color-secundario: #198754;
-  --color-fondo: #f4f6f9;
-  --color-fondo-suave: #eef4ff;
-  --color-texto: #212529;
-  --color-oscuro: #212529;
-  --color-blanco: #ffffff;
-  --radio: 18px;
-  --sombra: 0 8px 20px rgba(0,0,0,0.08);
+  --primary-color: #0d6efd;
+  --success-color: #198754;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #0dcaf0;
+  --light-bg: #f8f9fa;
 }
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background-color: var(--color-fondo);
-  color: var(--color-texto);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
+  color: #333;
+  padding-top: 60px;
+  background-color: #fff;
 }
 
-.container {
-  max-width: 1100px;
-}
-
-/* =====================================================
-   ACCESIBILIDAD
-===================================================== */
-
+/* Skip Link */
 .skip-link {
   position: absolute;
   top: -40px;
-  left: 10px;
+  left: 0;
   background: #000;
-  color: #fff;
-  padding: 8px 12px;
-  z-index: 1000;
-  text-decoration: none;
+  color: white;
+  padding: 8px;
+  z-index: 100;
 }
+
 .skip-link:focus {
-  top: 10px;
+  top: 0;
 }
 
-/* =====================================================
-   NAVBAR
-===================================================== */
-
+/* Navbar */
 .navbar {
-  box-shadow: var(--sombra);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* =====================================================
-   ESTRUCTURA GENERAL
-===================================================== */
-
-.main-index,
+/* Main Container */
 .guia-main {
-  margin-top: 90px;
-  margin-bottom: 80px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
-/* =====================================================
-   HERO (INDEX Y GUÍAS)
-===================================================== */
-
-.hero-index,
-.guia-hero {
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: var(--color-blanco);
-  padding: 80px 30px;
-  border-radius: var(--radio);
-  margin-bottom: 80px;
-  box-shadow: var(--sombra);
-}
-
-.hero-index h1,
-.guia-hero h1 {
-  font-weight: 800;
-}
-
-.badge-guia {
-  display: inline-block;
-  background: #ffc107;
-  color: #000;
-  padding: 10px 18px;
-  border-radius: 30px;
-  font-weight: 600;
-  margin-top: 15px;
-}
-
-/* =====================================================
-   SECCIONES
-===================================================== */
-
-.seccion-index,
+/* Secciones */
 .guia-seccion {
-  background: var(--color-blanco);
-  padding: 40px;
-  border-radius: var(--radio);
-  margin-bottom: 60px;
-  box-shadow: var(--sombra);
+  padding: 60px 0;
+  border-bottom: 1px solid #eee;
 }
 
-.seccion-index.fondo,
-.guia-fondo {
-  background: var(--color-fondo-suave);
-}
-
-/* =====================================================
-   TARJETAS (INDEX / DOCENTES / FAMILIAS)
-===================================================== */
-
-.card-index,
-.guia-card {
-  background: var(--color-blanco);
-  padding: 30px;
-  border-radius: var(--radio);
-  text-align: center;
-  box-shadow: var(--sombra);
-  height: 100%;
-}
-
-.card-index i,
-.guia-card i {
+.guia-seccion h2 {
   font-size: 2.5rem;
-  color: var(--color-primario);
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.guia-seccion h5 {
+  font-size: 1.3rem;
+  font-weight: 600;
   margin-bottom: 15px;
 }
 
-/* =====================================================
-   LISTAS DIDÁCTICAS
-===================================================== */
-
-.lista-guia,
-.lista-enfoque {
-  list-style: none;
-  padding-left: 0;
+/* Hero */
+.guia-hero {
+  padding: 60px 0;
+  margin-bottom: 40px;
 }
 
-.lista-guia li,
-.lista-enfoque li {
-  margin-bottom: 10px;
-  padding-left: 25px;
-  position: relative;
-}
-
-.lista-guia li::before,
-.lista-enfoque li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  color: var(--color-secundario);
-  font-weight: bold;
-}
-
-/* =====================================================
-   PASOS (DOCENTES)
-===================================================== */
-
-.paso {
-  background: var(--color-blanco);
-  border-left: 8px solid var(--color-secundario);
-  padding: 25px;
+.guia-hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #222;
   margin-bottom: 20px;
-  border-radius: var(--radio);
-  box-shadow: var(--sombra);
 }
 
-/* =====================================================
-   DRAG & DROP (DOCENTES / ESTUDIANTES)
-===================================================== */
+.guia-hero .badge-guia {
+  display: inline-block;
+  background: #e7f3ff;
+  color: #0d6efd;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
 
-.draggable {
-  background: var(--color-blanco);
-  border: 2px dashed var(--color-primario);
-  border-radius: 14px;
+/* Fondos alternados */
+.guia-fondo {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Cards */
+.card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+}
+
+.card-header {
   padding: 15px;
-  text-align: center;
-  cursor: grab;
-  font-weight: 600;
 }
 
-.zona-drop {
-  border: 3px dashed var(--color-secundario);
-  border-radius: 16px;
-  padding: 30px;
-  min-height: 140px;
-  background: #f8fff9;
+.card-header h5 {
+  margin-bottom: 0;
 }
 
-.item-guia {
-  background: #e9f7ef;
-  padding: 10px;
-  margin-top: 8px;
-  border-radius: 10px;
-  font-weight: 600;
+/* Listas */
+.lista-guia {
+  padding-left: 20px;
 }
 
-/* =====================================================
-   DESAFÍOS Y RETOS (ESTUDIANTES / FAMILIAS)
-===================================================== */
-
-.desafio {
-  background: var(--color-blanco);
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
-  font-weight: 600;
-  border: 2px solid var(--color-primario);
-  transition: all 0.3s ease;
-}
-
-.desafio:hover {
-  background: var(--color-fondo-suave);
-  transform: translateY(-4px);
-}
-
-/* =====================================================
-   FORMULARIOS
-===================================================== */
-
-.form-label {
-  font-weight: 600;
-}
-
-textarea,
-input,
-select {
-  border-radius: 10px !important;
-}
-
-/* =====================================================
-   TABLAS (GUÍA GENERADA)
-===================================================== */
-
-table {
-  background: var(--color-blanco);
-}
-
-table th {
-  background: #e9f1ff;
-  width: 25%;
-  vertical-align: middle;
-}
-
-/* =====================================================
-   BOTONES
-===================================================== */
-
-button,
-.btn {
-  border-radius: 30px !important;
-  padding: 10px 24px;
-}
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-.footer {
-  background: var(--color-oscuro);
-  color: var(--color-blanco);
-  padding: 30px;
-  text-align: center;
-}
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media (max-width: 768px) {
-  .hero-index,
-  .guia-hero {
-    padding: 50px 20px;
-  }
-
-  .seccion-index,
-  .guia-seccion {
-    padding: 25px;
-  }
-}
-
-.tecnica-card {
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.tecnica-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,.15);
-}
-
-#btnMostrarMas i {
-  animation: bounce 1.5s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
-}
-.recurso-card {
-  background: #8b0036;
-  color: #fff;
-  border-radius: 12px;
-  padding: 25px;
-  text-align: center;
-  cursor: pointer;
-  transition: transform .2s, box-shadow .2s;
-  min-height: 170px;
-}
-
-.recurso-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,.25);
-}
-
-.recurso-card i {
-  font-size: 2.5rem;
+.lista-guia li {
   margin-bottom: 10px;
-  display: block;
+  line-height: 1.8;
 }
 
-.recurso-card span {
-  display: block;
-  margin-top: 10px;
-  font-size: .9rem;
-  opacity: .85;
+/* Feature Box */
+.feature-box {
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+}
+
+.feature-box i {
+  color: var(--primary-color);
+}
+
+/* Alerts */
+.alert {
+  border-radius: 8px;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--light-bg);
+  margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .guia-hero h1 {
+    font-size: 2rem;
+  }
+
+  .guia-seccion h2 {
+    font-size: 1.8rem;
+  }
+
+  .guia-seccion {
+    padding: 40px 0;
+  }
 }
