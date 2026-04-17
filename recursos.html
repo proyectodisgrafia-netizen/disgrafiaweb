@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Centro de Recursos | Disgrafía</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/estilos.css" rel="stylesheet">
+  <link href="css/recursos.css" rel="stylesheet">
+</head>
+
+<body>
+
+<a href="#contenido" class="skip-link">Saltar al contenido principal</a>
+
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Disgrafía <span class="badge bg-success">Recursos</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html"><i class="bi bi-arrow-left"></i> Volver</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="constructor.html" class="btn btn-warning btn-sm ms-2">Constructor</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main id="contenido" class="mt-5 mb-5">
+
+  <!-- HEADER -->
+  <section class="bg-primary text-white py-5">
+    <div class="container">
+      <h1 class="mb-3"><i class="bi bi-book"></i> Centro Integral de Recursos</h1>
+      <p class="lead mb-0">Herramientas, actividades, videos, juegos y PDFs para atender disgrafía en todos los niveles educativos</p>
+    </div>
+  </section>
+
+  <div class="container mt-5">
+
+    <!-- FILTROS -->
+    <section class="mb-5">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h5 class="mb-4"><i class="bi bi-funnel"></i> Filtrar Recursos</h5>
+          
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="filtroNivel" class="form-label"><strong>Por Nivel Educativo:</strong></label>
+              <select id="filtroNivel" class="form-select" onchange="aplicarFiltros()">
+                <option value="">-- Todos los niveles --</option>
+                <option value="inicial">Educación Inicial</option>
+                <option value="elemental">Básica Elemental (2°-4°)</option>
+                <option value="media">Básica Media (5°-7°)</option>
+                <option value="superior">Básica Superior (8°-10°)</option>
+                <option value="bachillerato">Bachillerato</option>
+                <option value="especial">Educación Especial</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="filtroDisgrafia" class="form-label"><strong>Por Tipo de Disgrafía:</strong></label>
+              <select id="filtroDisgrafia" class="form-select" onchange="aplicarFiltros()">
+                <option value="">-- Todos los tipos --</option>
+                <option value="motriz">Motriz (Control motor)</option>
+                <option value="visuoespacial">Visuoespacial (Organización)</option>
+                <option value="linguistica">Lingüística (Expresión escrita)</option>
+                <option value="mixta">Mixta (Combinada)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-2">
+            <div class="col-md-12">
+              <label for="filtroTipo" class="form-label"><strong>Por Tipo de Recurso:</strong></label>
+              <div class="btn-group w-100 flex-wrap" role="group">
+                <input type="radio" class="btn-check" name="filtroTipo" id="filtroTodoRecurso" value="" onchange="aplicarFiltros()">
+                <label class="btn btn-outline-primary" for="filtroTodoRecurso">Todos</label>
+
+                <input type="radio" class="btn-check" name="filtroTipo" id="filtroVideo" value="video" onchange="aplicarFiltros()">
+                <label class="btn btn-outline-danger" for="filtroVideo"><i class="bi bi-play-circle"></i> Videos</label>
+
+                <input type="radio" class="btn-check" name="filtroTipo" id="filtroPDF" value="pdf" onchange="aplicarFiltros()">
+                <label class="btn btn-outline-success" for="filtroPDF"><i class="bi bi-file-earmark-pdf"></i> PDFs</label>
+
+                <input type="radio" class="btn-check" name="filtroTipo" id="filtroJuego" value="juego" onchange="aplicarFiltros()">
+                <label class="btn btn-outline-warning" for="filtroJuego"><i class="bi bi-joystick"></i> Juegos</label>
+
+                <input type="radio" class="btn-check" name="filtroTipo" id="filtroHerramienta" value="herramienta" onchange="aplicarFiltros()">
+                <label class="btn btn-outline-info" for="filtroHerramienta"><i class="bi bi-laptop"></i> Herramientas</label>
+
+                <input type="radio" class="btn-check" name="filtroTipo" id="filtroActividad" value="actividad" onchange="aplicarFiltros()">
+                <label class="btn btn-outline-secondary" for="filtroActividad"><i class="bi bi-pencil-square"></i> Actividades</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECURSOS FILTRADOS -->
+    <section id="contenidoRecursos" class="mb-5">
+      <!-- Se carga dinámicamente -->
+    </section>
+
+    <!-- TABS DE RECURSOS POR CATEGORÍA -->
+    <section class="mt-5">
+      <h2 class="mb-4"><i class="bi bi-collection"></i> Recursos por Categoría</h2>
+
+      <ul class="nav nav-tabs nav-fill mb-4" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="videos-tab" data-bs-toggle="tab" data-bs-target="#videos" type="button">
+            <i class="bi bi-play-circle"></i> Videos YouTube
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pdfs-tab" data-bs-toggle="tab" data-bs-target="#pdfs" type="button">
+            <i class="bi bi-file-earmark-pdf"></i> PDFs Imprimibles
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="juegos-tab" data-bs-toggle="tab" data-bs-target="#juegos" type="button">
+            <i class="bi bi-joystick"></i> Juegos Educativos
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="herramientas-tab" data-bs-toggle="tab" data-bs-target="#herramientas" type="button">
+            <i class="bi bi-laptop"></i> Herramientas TIC
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="portales-tab" data-bs-toggle="tab" data-bs-target="#portales" type="button">
+            <i class="bi bi-globe"></i> Portales Educativos
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <!-- TAB: VIDEOS -->
+        <div class="tab-pane fade show active" id="videos" role="tabpanel">
+          <div class="row g-4" id="contenidoVideos">
+            <!-- Se carga dinámicamente -->
+          </div>
+        </div>
+
+        <!-- TAB: PDFS -->
+        <div class="tab-pane fade" id="pdfs" role="tabpanel">
+          <div class="row g-4" id="contenidoPDFs">
+            <!-- Se carga dinámicamente -->
+          </div>
+        </div>
+
+        <!-- TAB: JUEGOS -->
+        <div class="tab-pane fade" id="juegos" role="tabpanel">
+          <div class="row g-4" id="contenidoJuegos">
+            <!-- Se carga dinámicamente -->
+          </div>
+        </div>
+
+        <!-- TAB: HERRAMIENTAS -->
+        <div class="tab-pane fade" id="herramientas" role="tabpanel">
+          <div class="row g-4" id="contenidoHerramientas">
+            <!-- Se carga dinámicamente -->
+          </div>
+        </div>
+
+        <!-- TAB: PORTALES -->
+        <div class="tab-pane fade" id="portales" role="tabpanel">
+          <div class="row g-4" id="contenidoPortales">
+            <!-- Se carga dinámicamente -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GUÍAS Y MANUALES -->
+    <section class="mt-5 mb-5">
+      <h2 class="mb-4"><i class="bi bi-book-half"></i> Guías y Manuales Descargables</h2>
+      <div class="row g-4" id="contenidoGuias">
+        <!-- Se carga dinámicamente -->
+      </div>
+    </section>
+
+    <!-- RECOMENDACIONES SEGÚN TIPO DE DISGRAFÍA -->
+    <section class="mt-5 mb-5">
+      <h2 class="mb-4"><i class="bi bi-lightbulb"></i> Recomendaciones por Tipo de Disgrafía</h2>
+      <div class="row g-4" id="contenidoRecomendaciones">
+        <!-- Se carga dinámicamente -->
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+<footer class="footer text-center mt-5">
+  <div class="container py-4 border-top">
+    <p class="mb-2"><strong>© 2026 – Guía Didáctica Digital para la Atención de Disgrafía</strong></p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/recursos.js"></script>
+
+</body>
+</html>
