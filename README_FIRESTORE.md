@@ -1,9 +1,12 @@
-### Firestore usage
+### Firestore rules and Admin UI
 
-This branch implements basic students CRUD using Firebase Firestore and server-side verification of ID tokens.
+Added files in this branch:
+- firestore.rules: recommended rules to enforce roles using the `users` collection.
+- firestore.indexes.json: placeholder for indexes.
+- API endpoints: /api/users and /api/users/:id (admin-only) to list and manage users.
+- Frontend admin page: /admin/users to list users and change roles.
 
-- API routes: /api/students (GET, POST) and /api/students/:id (GET, PUT, DELETE)
-- Authentication: client uses Firebase Auth; API verifies ID token with firebase-admin
-- Collections used: `users` (store roles like "admin"/"docente"), `students`
-
-Remember to set FIREBASE_ADMIN_* environment variables for server verification.
+Notes:
+- The endpoints expect the caller to pass Authorization: Bearer <idToken> header from Firebase client.
+- The server will attempt to set custom claims when changing roles (may require appropriate service account permissions).
+- Create an admin user manually by adding a document in the `users` collection with id equal to the user's uid and role: 'admin', or run a script to seed the admin.
