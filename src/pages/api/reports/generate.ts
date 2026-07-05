@@ -66,14 +66,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     // Save to Firebase Storage
     const adminApp = getAdmin()
-    const bucket = adminApp.storage().bucket()
+    const bucketName = process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || undefined
+    const bucket = bucketName ? adminApp.storage().bucket(bucketName) : adminApp.storage().bucket()
     const filePath = `reports/${studentId}-${Date.now()}.pdf`
     const file = bucket.file(filePath)
 
     await file.save(pdfBuffer, { contentType: 'application/pdf' })
 
-    // Generate signed URL valid for 1 hour
-    const [url] = await file.getSignedUrl({ action: 'read', expires: Date.now() + 60 * 60 * 1000 })
+    // Generate signed URL valid for 1 hour (use Date object)
+    const [url] = await file.getSignedUrl({ action: 'read', expires: new Date(Date.now() + 60 * 60 * 1000) })
 
     return res.json({ url })
   } catch (err: any) {
