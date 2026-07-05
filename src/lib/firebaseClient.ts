@@ -43,3 +43,9 @@ export function onAuthChange(cb: (user: any) => void) {
 export async function getCurrentUser() {
   return auth.currentUser
 }
+
+export async function getIdToken() {
+  const user = auth.currentUser
+  if (!user) throw new Error('Not authenticated')
+  return user.getIdToken()
+}
