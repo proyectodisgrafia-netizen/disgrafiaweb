@@ -1,12 +1,16 @@
-### Firestore rules and Admin UI
+### Reports
 
-Added files in this branch:
-- firestore.rules: recommended rules to enforce roles using the `users` collection.
-- firestore.indexes.json: placeholder for indexes.
-- API endpoints: /api/users and /api/users/:id (admin-only) to list and manage users.
-- Frontend admin page: /admin/users to list users and change roles.
+This branch adds a simple PDF report generator API and a UI page to create reports for students.
+
+- POST /api/reports/generate
+  - Body: { studentId }
+  - Requires Authorization: Bearer <idToken>
+  - Checks requester role (admin/docente)
+  - Generates a simple PDF containing student info and assessments, saves it to Firebase Storage, and returns a signed URL valid for 1 hour.
+
+- UI: /reports
+  - Lists students and provides a "Generar PDF" button for each.
 
 Notes:
-- The endpoints expect the caller to pass Authorization: Bearer <idToken> header from Firebase client.
-- The server will attempt to set custom claims when changing roles (may require appropriate service account permissions).
-- Create an admin user manually by adding a document in the `users` collection with id equal to the user's uid and role: 'admin', or run a script to seed the admin.
+- Ensure Firebase Storage bucket is configured (NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET and service account permissions for storage).
+- pdfkit is used to build the PDF in memory.
